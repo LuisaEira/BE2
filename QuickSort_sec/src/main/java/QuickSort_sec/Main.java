@@ -23,6 +23,7 @@ public class Main {
         int c;
         int i;
         int f = 0;
+        boolean flag;
 
         int nb_th = 6;
 
@@ -59,9 +60,11 @@ public class Main {
                 }
                 System.out.println("");
                 System.out.println("Entra primero");
-                Triage tri = new Triage(T, nb_th);
+                flag=false;
+                Triage tri = new Triage(T, nb_th,flag);
 //                tri.isT();
-                tri.trier(T, 0, T.length);
+                
+                tri.trier(T, 0, T.length-1);
                 T = tri.isT();
             }
             for (int k = 0; k < T.length; k++) {
