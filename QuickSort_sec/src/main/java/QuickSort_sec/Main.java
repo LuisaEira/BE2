@@ -47,22 +47,28 @@ public class Main {
             } else if (n == 2) {
                 int aux;
                 if (T[0] > T[1]) {
+
                     aux = T[1];
                     T[1] = T[0];
                     T[0] = aux;
                 }
             } else if (f == 1 && n > 2) {
 //                System.out.println("Entra");
+                for (int k = 0; k < T.length; k++) {
+                    System.out.print(T[k]+" ");
+                }
+                System.out.println("");
+                System.out.println("Entra primero");
                 Triage tri = new Triage(T, nb_th);
 //                tri.isT();
                 tri.trier(T, 0, T.length);
                 T = tri.isT();
             }
             for (int k = 0; k < T.length; k++) {
-                System.out.println(T[k]);
+                System.out.print(T[k]+" ");
             }
+            System.out.println(" ");
         }
 
     }
-
 }
