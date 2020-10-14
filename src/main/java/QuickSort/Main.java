@@ -18,8 +18,8 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static Object obj1 = new Object();
-    public static Object obj2 = new Object();
+//    public static Object obj1 = new Object();
+//    public static Object obj2 = new Object();
     public static Lock lock = new ReentrantLock();
     public static Lock lock2 = new ReentrantLock();
     public static int nb_th;
