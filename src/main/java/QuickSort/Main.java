@@ -5,6 +5,8 @@
  */
 package QuickSort;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +20,8 @@ public class Main {
      */
     public static Object obj1 = new Object();
     public static Object obj2 = new Object();
-//    public static int num_threads;
+    public static Lock lock = new ReentrantLock();
+    public static Lock lock2 = new ReentrantLock();
     public static int nb_th;
 
     public static void main(String[] args) {
@@ -35,7 +38,6 @@ public class Main {
         isNumber num = new isNumber(N);
         if (num.check(N) == true) {
             n = num.isN(N);
-//            System.out.println(n);
             int[] T = new int[n];
             flag=JOptionPane.showConfirmDialog(null,"Est ce que tu veux créer le vecteur manuelement?","Random Vector",JOptionPane.YES_NO_OPTION);
             
@@ -52,7 +54,6 @@ public class Main {
                     }
                 }
             }
-//            System.out.println(T[1]);
             if (n == 1) {
 
             } else if (n == 2) {
@@ -64,25 +65,10 @@ public class Main {
                     T[0] = aux;
                 }
             } else if (f == 1 && n > 2) {
-//                System.out.println("Entra");
-//                for (int k = 0; k < T.length; k++) {
-//                    System.out.print(T[k] + " ");
-//                }
-//                System.out.println("");
-//                System.out.println("Entra primero");
-//                flag = false;
                 Triage tri = new Triage("1",T, n);
-//                tri.isT();
-
                 Thread th = new Thread(tri);
                 th.start();
-//                T = tri.isT();
             }
-//            System.out.println("FIN ");
-//            for (int k = 0; k < T.length; k++) {
-//                System.out.print(T[k] + " ");
-//            }
-//            System.out.println(" ");
         }
 
     }
