@@ -16,10 +16,10 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static final Object verrou = new Object();
-    public static final Object verrou_ecran = new Object();
-    public static int num_threads;
-    public static final int Limit_Threads = 6;
+    public static Object obj1 = new Object();
+    public static Object obj2 = new Object();
+//    public static int num_threads;
+    public static int nb_th;
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -29,7 +29,8 @@ public class Main {
         int i;
         int f = 0;
         int flag;
-        num_threads = 1;
+        nb_th = Integer.parseInt(JOptionPane.showInputDialog("Nombre de Threads a utiliser comme limite"));
+        nb_th--;
         N = JOptionPane.showInputDialog("Nombre d'élements du tableau");
         isNumber num = new isNumber(N);
         if (num.check(N) == true) {

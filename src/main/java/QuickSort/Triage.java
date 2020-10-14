@@ -101,25 +101,25 @@ public class Triage implements Runnable {
 //            System.out.println("Entra_ord2");
 //            System.out.println(isVect());
 //            gauche = ga;
-            boolean avec_threads = false;
+            boolean threads_disp = false;
 
-            synchronized (Main.verrou) {
-                if (Main.num_threads < Main.Limit_Threads - 1) {
-                    Main.num_threads = Main.num_threads + 2;
-                    avec_threads = true;
+            synchronized (Main.obj1) {
+                if (Main.nb_th >= 2) {
+                    Main.nb_th=Main.nb_th-2;
+                    threads_disp = true;
                 }
 
             }
-            if (avec_threads == true) {
+            if (threads_disp == true) {
                 Triage Tri_1 = new Triage(nom + "_1",T1_aux, cont);
                 Triage Tri_2 = new Triage(nom + "_2",T2_aux, cont2);
-                Thread th1 = new Thread(Tri_1);
-                Thread th2 = new Thread(Tri_2);
-                th1.start();
-                th2.start();
+                Thread th_1 = new Thread(Tri_1);
+                Thread th_2 = new Thread(Tri_2);
+                th_1.start();
+                th_2.start();
                 try {
-                    th1.join();
-                    th2.join();
+                    th_1.join();
+                    th_2.join();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Triage.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -158,22 +158,29 @@ public class Triage implements Runnable {
     
     public void ecrireT(int T_aux[],int l) {
         for (int r = 0; r < l; r++) {
-                System.out.print(T_aux[r] + " ");
+                if (r<l-1){
+                    System.out.print(T_aux[r] + " ");
+                }else{
+                    System.out.print(T_aux[r]);
+                }
             }
-        System.out.println("");
+        System.out.print("}");
+        System.out.println(" ");
     }
 
     @Override
     public void run() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        synchronized (Main.verrou_ecran) {
-            System.out.print(" Thread " + nom + "va a trier: ");
+        synchronized (Main.obj2) {
+            System.out.print(" Thread " + nom + " va a trier: {");
             ecrireT(T, Long);
+//            System.out.print("}");
         }
         trier(T, Long);
-        synchronized (Main.verrou_ecran) {
-            System.out.print(" Vecteur trié: ");
+        synchronized (Main.obj2) {
+            System.out.print(" Vecteur trie par thread " + nom + ": {");
             ecrireT(T, Long);
+//            System.out.print("}");
         }
     }
 }
